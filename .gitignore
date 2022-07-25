@@ -15,7 +15,7 @@ coverage
 coverage.json
 typechain
 
-# don't push the environment vars!
+# Environment Variables
 .env
 
 # Built application files
