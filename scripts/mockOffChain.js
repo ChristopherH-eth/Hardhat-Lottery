@@ -1,7 +1,8 @@
 const { ethers, network } = require("hardhat")
 
 /**
- * @param mockKeepers() pretends to be a Chainlink Keeper by checking if upkeep is needed.
+ * @dev The mockKeepers() function pretends to be a Chainlink Keeper by checking if upkeep
+ * is needed.
  */
 
 async function mockKeepers() {

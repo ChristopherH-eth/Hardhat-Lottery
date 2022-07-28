@@ -1,7 +1,3 @@
-/**
- * @param developmentChains Detects local blockchains.
- */
-
 const { developmentChains } = require("../helper-hardhat-config")
 
 /**

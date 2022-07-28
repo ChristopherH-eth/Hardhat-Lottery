@@ -1,16 +1,10 @@
-/**
- * @param network Detects network via Hardhat Runtime Environment (hre).
- * @param ethers Uses ethers.js through Hardhat.
- * @param developmentChains Detects local blockchains.
- * @param networkConfig Includes network names and VRFCoordinatorV2 contract
- * addresses found in "../helper-hardhat-config.js".
- * @param verify Used to verify Lottery contract when deploying to test or mainnet
- * @param VRF_SUB_FUND_AMOUNT Amount used to fund the subscription through the VRFCoordinatorV2Mock
- */
-
 const { network, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../helper-hardhat-config")
 const { verify } = require("../utils/verify")
+
+/**
+ * @param VRF_SUB_FUND_AMOUNT Amount used to fund the subscription through the VRFCoordinatorV2Mock
+ */
 
 const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("30")
 
@@ -25,8 +19,8 @@ const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("30")
  * @param chainId Grabs corresponding network chainId from "../helper-hardhat-config.js".
  * @param vrfCoordinatorV2Address Takes the contract address of either the deployed mock
  * or the contract address on the corresponding network.
- * @param subscriptionId The subscription ID emitted from the VRFCoordinatorV2Mock when
- * calling createSubscription() since there are no LINK nodes on our local blockchains.
+ * @param subscriptionId The subscription ID emitted from the VRFCoordinatorV2Mock (or
+ * VRFCoordinatorV2 if on a testnet) when calling createSubscription().
  */
 
 module.exports = async function ({ getNamedAccounts, deployments }) {
@@ -39,7 +33,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
      * @dev Detects network and deploys mocks if on a local blockchain; else, it grabs the
      * @dev VRFCoordinatorV2 address for the connected network.
      * @param vrfCoordinatorV2Mock Gets contract info for VRFCoordinatorV2Mock.
-     * @param transactionResponse Waits for createSubscription function event.
+     * @param transactionResponse Waits for createSubscription function.
      * @param transactionReceipt Waits 1 block for subscription creation.
      */
 
